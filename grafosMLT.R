@@ -6,25 +6,25 @@ rm(list = ls()) # Remove all the objects we created so far.
 # DATASETS 
 
 #todos los nodos
-nodosMLT <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodos.csv", na.strings="n/a")
-enlacesMLT <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - enlaces-MLT.csv", na.strings="n/a")
+nodosMLT <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodos.csv", na.strings="n/a")
+enlacesMLT <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - enlaces-MLT.csv", na.strings="n/a")
 #Exposiciones y ...
-nodosExArt<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodosExArt.csv", na.strings="n/a")
-nodosExCur<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodosExCur.csv", na.strings="n/a")
-nodosExAus<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodosExAus.csv", na.strings="n/a")
-nodosExPre<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodosExPre.csv", na.strings="n/a")
-nodosExObras<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodosExObras.csv", na.strings="n/a")
+nodosExArt<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodosExArt.csv", na.strings="n/a")
+nodosExCur<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodosExCur.csv", na.strings="n/a")
+nodosExAus<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodosExAus.csv", na.strings="n/a")
+nodosExPre<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodosExPre.csv", na.strings="n/a")
+nodosExObras<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodosExObras.csv", na.strings="n/a")
 
-nodosArtCur<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - nodosArtCur.csv", na.strings="n/a")
+nodosArtCur<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - nodosArtCur.csv", na.strings="n/a")
 
   
-Expos.Artistas <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - Expos-Artistas.csv", na.strings="n/a")
-Expos.Curadores <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - Expos-Curadores.csv", na.strings="n/a")
-Expos.Auspiciadores <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - Expos-Auspiciadores.csv", na.strings="n/a")
-Expos.Presentadores <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - Expos-Presentadores.csv", na.strings="n/a")
-Expos.Obras <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - Expos-Obras.csv", na.strings="n/a")
-Artista.Curador<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/MLT_DB_07_2016 - Artista-Curador.csv", na.strings="n/a")
-Artista.Curador.nombre<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/Continua-MLT_DB_07_2016 - Artista-Curador-Expo.csv", na.strings="n/a")
+Expos.Artistas <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - Expos-Artistas.csv", na.strings="n/a")
+Expos.Curadores <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - Expos-Curadores.csv", na.strings="n/a")
+Expos.Auspiciadores <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - Expos-Auspiciadores.csv", na.strings="n/a")
+Expos.Presentadores <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - Expos-Presentadores.csv", na.strings="n/a")
+Expos.Obras <- read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - Expos-Obras.csv", na.strings="n/a")
+Artista.Curador<-  read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/MLT_DB_07_2016 - Artista-Curador.csv", na.strings="n/a")
+Artista.Curador.nombre<-read.csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - Artista-Curador-Expo.csv", na.strings="n/a")
 
 
 # Examine the data:

@@ -5,6 +5,7 @@
 library(readr)
 library(dplyr)
 library(tidyr)
+library(ggplot2)
 #lectura de archivos
 #matriz inicial de los datos de exposiciones y agentes
 MLT_Exposiciones_agentes <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - Exposiciones-agentes.csv",
@@ -48,7 +49,7 @@ MLT_organizaciones<-MLT_organizaciones %>%
   mutate(nombre_institucion=trimws(nombre_institucion)) %>%
   distinct(nombre_institucion,.keep_all=TRUE)
 
-#funcion para evaluar el tipo de exposicion en clectiba e individual
+#funcion para evaluar el tipo de exposicion colectiva e individual
 participacion_expo<-function(art){
   if(is.na(art) )
     return(NA)
@@ -161,45 +162,153 @@ expo_agentes_expandido<-bind_rows(expo_agentes_personas,expo_agentes_organizacio
   group_by(id_expo,rol_expo,nombre_registro_agente) %>% 
   filter(n()>1) 
 # %>% View()
+  #añador las exposiciones a las relaciones y guardar en archivo
+  MLTExpos1956_2016<-full_join(MLT_expos,expo_agentes_expandido,by="id_expo")
+  write_csv(MLTExpos1956_2016,"MLTexpos1956-2016.csv")
   
-  MLTExpos1956_2106<-full_join(MLT_expos,expo_agentes_expandido,by="id_expo")
-  write_csv(MLTExpos1956_2106,"MLTexpos1956-2016.csv")
-  
+###############################################  
 #generacion de relaciones artistas artistas
-  relaciones_artistas_expo<-function(art){
-    if(is.na(art) )
-      return(NA)
-    
-    print(art)
-    print(length(art))
-    print(length(art[[1]]))
-    
-    return(art[[1]])
+
+    expo_artista_artista<-select(MLT_Exposiciones_agentes,id_expo,artistas) %>% 
+    mutate(artistas_c=artistas)%>%
+    transform(artistas_c = strsplit(as.character(artistas_c),","))
+    # %>%
+    #   transform(artistas_c=trimws(artistas_c))
+
+# Itera por cada cada una de las listas de artsitas    
+  x<-expo_artista_artista$artistas_c
+  idex<-expo_artista_artista$id_expo
+  relation_df<- data.frame(id_expo = integer(0),a1=character(0),a2=character(0))
+  for(i in 1:length(idex)){
+    if(length(x[[i]])>1 ){
+      relation_matrix<-combn(trimws(x[[i]]),2)
+      ids<-rep(i, times = dim(relation_matrix)[2])
+      a1<-as.vector(relation_matrix[1,])
+      a2<-as.vector(relation_matrix[2,])
+      tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
+      relation_df<-bind_rows(relation_df,tmp_df)
+    }
   }
   
-  expo_artista_artista<-select(MLT_Exposiciones_agentes[1:10,],id_expo,artistas) %>% 
-   mutate(artistas_c = strsplit(as.character(artistas),","))
-  unnest(artistas_c)
-  
-  expo_artista_artista<-select(MLT_Exposiciones_agentes[1:10,],id_expo,artistas) %>% 
-    mutate(artistas_c=artistas)%>%
-  transform(artistas_c = strsplit(as.character(artistas_c),","))%>%
-    rowwise() %>%
-  mutate(artistas_comb=relaciones_artistas_expo(artistas_c))  
-    unnest(artistas_c)
+  #
     
-  
-  lapply(expo_artista_artista$artistas,relaciones_artistas_expo)
-  
-  combn(strsplit(expo_artista_artista$artistas[3],",")[[1]],2)
-  
-  combn(expo_artista_artista$artistas_c[3][[1]],2)
-  
-    rowwise() %>%
-    mutate(artistas_comb= relaciones_artistas_expo(artistas)) 
-    unnest(artistas_comb) %>% 
-    #mutate(nombre_registro_agente=trimws(nombre_registro_agente))  
+#buscar duliplicados
+relation_df%>%
+  group_by(id_expo,a1,a2) %>% 
+  filter(n()>1)
+# %>% View()
+#eliminar duliplicados
+expo_artista_artista<-relation_df %>%
+  distinct(id_expo,a1,a2,.keep_all=TRUE) %>%
+  mutate(rol_a1="artistas",rol_a2="artista")
 
+
+#generacion de relaciones curador artistas
+
+    expo_curador_artista<-select(MLT_Exposiciones_agentes,id_expo,curadores,artistas) %>% 
+    mutate(curadores_c=curadores, artistas_c=artistas)%>%
+    transform(curadores_c = strsplit(as.character(curadores_c),",")) %>%
+      transform(artistas_c = strsplit(as.character(artistas_c),",")) 
+    #   transform(artistas_c=trimws(artistas_c))
+
+# Itera por cada cada una de las listas de artsitas    
+  x<-expo_curador_artista$curadores_c
+  y<-expo_curador_artista$artistas_c
+  idex<-expo_curador_artista$id_expo
+  relation_df2<- data.frame(id_expo = integer(0),a1=character(0),a2=character(0))
+  for(i in 1:length(idex)){
+    #i<-196
+    if(length(x[[i]])==1 & length(y[[i]])==1 && !is.na(x[[i]]) && !is.na(y[[i]]) && trimws(y[[i]])!="Varios")
+    {
+      tmp_df<-data.frame(id_expo=idex[[i]],a1=x[[i]],a2=y[[i]])
+      bind_rows(relation_df2,tmp_df)
+    }
+    if(length(x[[i]])==1 & length(y[[i]])>1 && !is.na(x[[i]]) )
+      {
+      
+      ids<-rep(i, times = length(y[[i]]))
+      a1<-rep(trimws(x[[i]]), times =length(y[[i]]))
+      a2<-trimws(y[[i]])
+      tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
+      relation_df2<-bind_rows(relation_df2,tmp_df)
+    }
+    
+    if(length(x[[i]])>1 & length(y[[i]])>1 && !is.na(x[[i]]) )
+      {
+      
+      for(j in 1:length(x[[i]])){
+      ids<-rep(i, times = length(y[[i]]))  
+      a1<-rep(trimws(x[[i]][j]), times =length(y[[i]]))
+      a2<-trimws(y[[i]])
+      tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
+      relation_df2<-bind_rows(relation_df2,tmp_df)
+      }
+    }
+  }
+    
+#buscar duliplicados
+relation_df2%>%
+  group_by(id_expo,a1,a2) %>% 
+  filter(n()>1)
+# %>% View()
+#eliminar duliplicados
+expo_curador_artista<-relation_df2 %>%
+  distinct(id_expo,a1,a2,.keep_all=TRUE)%>%
+  mutate(rol_a1="curador",rol_a2="artista")
+
+#relaciones entre artistas-artistas y artistas curadores
+expo_agentes_curadore_artistas<-bind_rows(expo_artista_artista,expo_curador_artista)
+
+#añador las exposiciones a las relaciones y guardar en archivo
+grafoMLTcur_art_art_1956_2016<-full_join(MLT_expos,expo_agentes_curadore_artistas,by="id_expo")
+  write_csv(grafoMLTcur_art_art_1956_2016,"grafoMLTcur_art_art_1956_2016.csv")
+
+grafoMLTcur_art_1956_2016<-full_join(MLT_expos,expo_curador_artista,by="id_expo")
+  write_csv(grafoMLTcur_art_1956_2016,"grafoMLTcur_art_1956_2016.csv")
+  
+grafoMLTar_art_1956_2016<-full_join(MLT_expos,expo_artista_artista,by="id_expo")
+  write_csv(grafoMLTar_art_1956_2016,"grafoMLTart_art_1956_2016.csv")  
+  
+#relaciones (parejas) agrupadas por relacion acumulado en la historia de exposiciones
+#artista-artista  
+  artistas_artistas_acumulado<-expo_artista_artista%>%
+    group_by(a1,a2)%>%summarise(veces=n()) %>%
+    arrange(desc(veces))%>%
+    mutate(relacion="artista-artista")
+#curador-artista  
+  curador_artistas_acumulado<-expo_curador_artista%>%
+    group_by(a1,a2)%>%summarise(veces=n()) %>%
+    arrange(desc(veces))  %>%
+    mutate(relacion="curador-artista")
+
+#grafo total simplificado relaciones curador-artista y artista-artista 
+  agente_agente_relacion<-bind_rows(curador_artistas_acumulado,artistas_artistas_acumulado)
+#guardar en archivos
+  write_csv(agente_agente_relacion,"grafoMLTsimplificado_agente_agente_1956_2016.csv")
+    write_csv(artistas_artistas_acumulado ,"grafoMLTsimplificado_art_art_1956_2016.csv")
+        write_csv(curador_artistas_acumulado ,"grafoMLTsimplificado_cur_art_1956_2016.csv")
+
+
+  
+###### Ver histogramas 
+  #artistas -artistas
+qplot(main="Histograma de parejas de artistas",veces, data = artistas_artistas_acumulado[artistas_artistas_acumulado$veces>0,], geom = "histogram")
+qplot(main="Histograma de parejas de artistas con 2 o más exposiciones",veces, data = artistas_artistas_acumulado[artistas_artistas_acumulado$veces>=2,], geom = "histogram")
+qplot(main="Histograma de parejas de artistas con 3 o más exposiciones",veces, data = artistas_artistas_acumulado[artistas_artistas_acumulado$veces>=3,], geom = "histogram")
+qplot(main="Histograma de parejas de artistas con 4 o más exposiciones",veces, data = artistas_artistas_acumulado[artistas_artistas_acumulado$veces>=4,], geom = "histogram")
+qplot(main="Histograma de parejas de artistas con 5 o más exposiciones",veces, data = artistas_artistas_acumulado[artistas_artistas_acumulado$veces>=5,], geom = "histogram")
+#curador-artistas
+qplot(main="Histograma de parejas de curador-artistas",veces, data = curador_artistas_acumulado[curador_artistas_acumulado$veces>0,], geom = "histogram")
+qplot(main="Histograma de parejas de curador-artistas con 2 o más exposiciones",veces, data = curador_artistas_acumulado[curador_artistas_acumulado$veces>=2,], geom = "histogram")
+qplot(main="Histograma de parejas de curador-artistas con 3 o más exposiciones",veces, data = curador_artistas_acumulado[curador_artistas_acumulado$veces>=3,], geom = "histogram")
+qplot(main="Histograma de parejas de curador-artistas con 4 o más exposiciones",veces, data = curador_artistas_acumulado[curador_artistas_acumulado$veces>=4,], geom = "histogram")
+qplot(main="Histograma de parejas de curador-artistas con 5 o más exposiciones",veces, data = curador_artistas_acumulado[curador_artistas_acumulado$veces>=5,], geom = "histogram")
+
+
+####################################
+
+
+    
 #Documentos tratamiento a parte
 
 select(MLT_Exposiciones_agentes,id_expo,documento_ppal) %>%

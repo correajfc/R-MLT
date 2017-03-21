@@ -6,6 +6,7 @@ library(readr)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+
 #lectura de archivos
 #matriz inicial de los datos de exposiciones y agentes
 MLT_Exposiciones_agentes <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - Exposiciones-agentes.csv",
@@ -84,15 +85,14 @@ MLT_expos<- MLT_Exposiciones_agentes %>% rowwise() %>%
   select(id_expo,expo_order,nombre_expo,fecha_ini,fecha_fin,duracion_dias,
          nombre_espacio,descripcion_expo, tipo_participacion)
 
-# 
-# MLT_expos<- MLT_Exposiciones_agentes %>% rowwise() %>%
-# mutate(tipo_participacion = participacion_expo(artistas),
-#        cantidad_artistas = contar_artsitas(artistas) ) %>% 
-#  select(id_expo,expo_order,nombre_expo,fecha_ini,fecha_fin,duracion_dias,
-#        nombre_espacio,descripcion_expo, tipo_participacion, cantidad_artistas)
-#   
+#añadir campo identificacion de order-expo-año y campo del año
+MLT_expos<-MLT_expos %>% 
+  mutate(nombre_expo_order_ano= paste(expo_order,nombre_expo,format(fecha_ini,"%Y"),sep = "-"),
+         ano=as.integer(format(fecha_ini,"%Y"))) 
 
 
+
+#exposiciones y artistas
 expo_artistas<-select(MLT_Exposiciones_agentes,id_expo,artistas) %>% 
   rename(nombre_registro_agente=artistas) %>%
   mutate(nombre_registro_agente=strsplit(as.character(nombre_registro_agente), ","),rol_expo="artista") %>%
@@ -131,30 +131,22 @@ expo_agentes%>%
 expo_agentes<-expo_agentes %>%
   distinct(id_expo,rol_expo,nombre_registro_agente,.keep_all=TRUE)
 
+#completar datos de la tabla de personas
 expo_agentes_personas<- expo_agentes %>% 
   inner_join(MLT_personas,by=c("nombre_registro_agente"="nombre_registro_creador")) %>%
   rename(ano_agente_inicia=ano_nacimiento,ano_agente_fin=ano_muerte,nacionalidad_agente=nacionalidad) %>%
   select(-ocupaciones,-id_img__persona_fk,-(url_wikipedia_persona:tipo_creador)) %>% 
   mutate(tipo_agente="persona")
 
-# expo_agentes %>% 
-#   left_join(MLT_personas,by=c("nombre_registro_agente"="nombre_registro_creador")) %>%
-#   rename(ano_agente_inicia=ano_nacimiento,ano_agente_fin=ano_muerte,nacionalidad_agente=nacionalidad) %>%
-#   select(-ocupaciones,-id_img__persona_fk,-(url_wikipedia_persona:tipo_creador)) %>% 
-#   mutate(tipo_agente="persona")%>% View()
-
+#completar datos de la tabla de organizaciones
 expo_agentes_organizaciones<- expo_agentes %>% 
   inner_join(MLT_organizaciones,by=c("nombre_registro_agente"="nombre_institucion")) %>%
   rename(ano_agente_inicia=ano_constitucion,ano_agente_fin=ano_cierre,nacionalidad_agente=pais) %>%
   select(-financiacion,-sectores,-id_imagen_logo_fk) %>% 
   mutate(tipo_agente="organizacion")
 
-# expo_agentes %>% 
-#   left_join(MLT_organizaciones,by=c("nombre_registro_agente"="nombre_institucion")) %>%
-#   rename(ano_agente_inicia=ano_constitucion,ano_agente_fin=ano_cierre,nacionalidad_agente=pais) %>%
-#   select(-financiacion,-sectores,-id_imagen_logo_fk) %>% 
-#   mutate(tipo_agente="organizacion")%>% View()
 
+#unir en una tabla
 expo_agentes_expandido<-bind_rows(expo_agentes_personas,expo_agentes_organizaciones) 
 
   #buscar duliplicados

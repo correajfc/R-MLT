@@ -1,16 +1,75 @@
-#cargar librerias 
+#cargar/instalar librerias 
+
+install.packages('igraph')
+install.packages('network') 
+install.packages('sna')
+install.packages('ndtv')
+install.packages('visNetwork')
+devtools::install_github("analyxcompany/ForceAtlas2")
+
+
+library(readr)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
 library(igraph)
+library(network)
+library(sna)
+library(ndtv)
+library(visNetwork)
+library(ForceAtlas2)
+
+#mapas de color
+library(viridis)
+library(RColorBrewer)
+
 #cargar datos 
-rm(list = ls()) # Remove all the objects we created so far.
+#rm(list = ls()) # Remove all the objects we created so far.
 
 # DATASETS 
-head(MLTExpos1956_2106)
+head(MLTExpos1956_2016)
+head(agente_agente_relacion)
+head(artistas_artistas_acumulado)
+head(curador_artistas_acumulado)
+head(expo_agentes_curadore_artistas)
+head(grafoMLTar_art_1956_2016)
+head(grafoMLTcur_art_1956_2016)
+head(expo_agentes)
+head(expo_agentes_expandido)
+head(MLT_expos)
+
+
+#estadisticas 
+
+#grafica de expos por tipo de participacion
+p_ex <- ggplot(MLT_expos, aes( x=ano ) ) 
+p_ex + geom_histogram(aes(fill=factor(tipo_participacion)), color="white",binwidth=1)+
+  labs(title ="Exposiciones por año por tipo de participacion",x="años", y="cantidad")
+
+#expos curadas por año
+curadas<- expo_curadores %>% 
+  mutate(curada=if_else(!is.na(nombre_registro_agente),"curada","no-curada",NA_character_)) %>%
+  select(id_expo,curada) %>%
+  group_by(id_expo,curada) %>%
+  summarise(num_expos=n()) %>%
+  left_join(MLT_expos,., by="id_expo" ) %>%
+  #select(id_expo,ano,tipo_participacion,curada) %>%
+  #group_by(ano,tipo_participacion,curada) %>%
+  summarise(num_expos=n()) 
+
+
+#grafica de expos por tipo de participacion
+p_ex_curaduria_ano<-ggplot(curadas, aes(x=ano))
+p_ex_curaduria_ano + geom_histogram(aes(fill=factor(curada)), color="white",binwidth=1)+
+  labs(title ="Exposiciones por año con curaduria explicita",x="años", y="cantidad")
 
 
 
+#crear grafos
 
 
-#crear grafos 
+
 
 gMLT <- graph_from_data_frame(d=enlacesMLT, vertices=nodosMLT, directed=F)
 gExArt<-graph_from_data_frame(d=Expos.Artistas, vertices=nodosExArt, directed=F)
@@ -103,15 +162,5 @@ plot(gArtCur, edge.arrow.size=.4,vertex.label=NA,  vertex.frame.color='white',la
 plot(gArtCurSimple, edge.arrow.size=.4,vertex.label=NA,  vertex.frame.color='white',layout=layout_with_mds)
 
 
-#constrir dataframes
-head(Artista.Curador.nombre)
-
-
-
-#estadisticas basicas
-
-#crear grafo vacio
-
-#calcular metricas del grafo
 
 

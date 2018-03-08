@@ -6,25 +6,61 @@ library(readr)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(lubridate)
+library(visdat)
+library(stringr)
+
+library(googledrive)
+library(googlesheets)
+
+mishojas<-gs_ls()
+drive_ls("MLT_DB_07_2016")
+
+mishojas %>% filter(str_detect(sheet_title,"Continua-MLT_DB_07_2016") ) -> gsMLT
+gsMLT$sheet_key
+
+dbMTL60<-gs_key(gsMLT$sheet_key)
+MLT_Exposiciones_agentes<-dbMTL60 %>%
+  gs_read(ws ="Exposiciones-agentes",range = cell_cols("A:AH"))
+
+MLT_personas <- dbMTL60 %>%
+  gs_read(ws ="personas",range = cell_cols("A:Q"))
+
+MLT_organizaciones <-  dbMTL60 %>%
+  gs_read(ws ="organizaciones",range = cell_cols("A:H"))
+
+MLT_presentadores <-   dbMTL60 %>%
+  gs_read(ws ="presentadores",range = cell_cols("A:C"))
+
+
+MLT_curadores <- dbMTL60 %>%
+  gs_read(ws ="curadores",range = cell_cols("A:E"))
+MLT_auspiciadores <- dbMTL60 %>%
+  gs_read(ws ="auspiciadores",range = cell_cols("A:E"))
+
+MLT_documentos <- dbMTL60 %>%
+  gs_read(ws ="documentos",range = cell_cols("A:T"))
+MLT_obras <- dbMTL60 %>%
+  gs_read(ws ="obras",range = cell_cols("A:AB"))
 
 #lectura de archivos
 #matriz inicial de los datos de exposiciones y agentes
-MLT_Exposiciones_agentes <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - Exposiciones-agentes.csv",
-col_types = cols(duracion_dias = col_integer(),
-fecha_fin = col_date(format = "%Y-%m-%d"),
-fecha_ini = col_date(format = "%Y-%m-%d")))
+# MLT_Exposiciones_agentes <- read_csv("data/Continua-MLT_DB_07_2016 - Exposiciones-agentes.csv",
+# col_types = cols(duracion_dias = col_integer(),
+# fecha_fin = col_date(format = "%Y-%m-%d"),
+# fecha_ini = col_date(format = "%Y-%m-%d")))
 
-MLT_personas <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - personas.csv")
-MLT_organizaciones <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - organizaciones.csv")
-MLT_presentadores <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - presentadores.csv")
-MLT_curadores <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - curadores.csv",
-col_types = cols(id_organizacion = col_integer(),
-id_persona = col_integer()))
-MLT_auspiciadores <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - auspiciadores.csv",
-col_types = cols(id_organizacion = col_integer(),
-id_persona = col_integer()))
-MLT_documentos <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - documentos.csv")
-MLT_obras <- read_csv("~/Documents/Proyectos/Javeriana-Tertulia/R-MLT/data/Continua-MLT_DB_07_2016 - obras.csv")
+# MLT_personas <- read_csv("data/Continua-MLT_DB_07_2016 - personas.csv")
+# MLT_organizaciones <- read_csv("data/Continua-MLT_DB_07_2016 - organizaciones.csv")
+# MLT_presentadores <- read_csv("data/Continua-MLT_DB_07_2016 - presentadores.csv")
+# MLT_curadores <- read_csv("data/Continua-MLT_DB_07_2016 - curadores.csv",
+# col_types = cols(id_organizacion = col_integer(),
+# id_persona = col_integer()))
+# MLT_auspiciadores <- read_csv("data/Continua-MLT_DB_07_2016 - auspiciadores.csv",
+# col_types = cols(id_organizacion = col_integer(),
+# id_persona = col_integer()))
+# MLT_documentos <- read_csv("data/Continua-MLT_DB_07_2016 - documentos.csv")
+# MLT_obras <- read_csv("data/Continua-MLT_DB_07_2016 - obras.csv")
 
 
 #examinar datos y convertir tipos de datos
@@ -135,7 +171,7 @@ expo_agentes<-expo_agentes %>%
 expo_agentes_personas<- expo_agentes %>% 
   inner_join(MLT_personas,by=c("nombre_registro_agente"="nombre_registro_creador")) %>%
   rename(ano_agente_inicia=ano_nacimiento,ano_agente_fin=ano_muerte,nacionalidad_agente=nacionalidad) %>%
-  select(-ocupaciones,-id_img__persona_fk,-(url_wikipedia_persona:tipo_creador)) %>% 
+  select(-ocupaciones,-id_img__persona_fk,-(url_wikipedia_persona:observaciones_personas)) %>% 
   mutate(tipo_agente="persona")
 
 #completar datos de la tabla de organizaciones

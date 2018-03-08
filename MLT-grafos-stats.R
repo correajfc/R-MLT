@@ -288,6 +288,95 @@ l <- norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
 plot(gArtCur, edge.arrow.size=.1,vertex.label=NA, rescale=F, vertex.frame.color='white',layout=l*2)
 plot(gArtCur, edge.arrow.size=.1,vertex.label=NA,  vertex.frame.color='white',layout=layout_with_kk)
 
+## filtros
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="artista") %>%
+  dplyr::filter(nombre_registro_agente != "Varios")%>%
+  group_by(nombre_registro_agente) %>%
+  summarise(num_expos=n()) %>%
+  filter(num_expos>4) %>%
+  arrange(desc(num_expos)) %>%
+  .$nombre_registro_agente %>% as.vector()->artistas_sel1
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="artista") %>%
+  dplyr::filter(nombre_registro_agente != "Varios")%>%
+  dplyr::filter(obra_en_coleccion_MTL>0) %>%
+  group_by(nombre_registro_agente) %>%
+  summarise(num_expos=n()) %>%
+  arrange(desc(num_expos)) %>%
+  .$nombre_registro_agente %>% as.vector()->artistas_sel2
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="curador") %>%
+  group_by(nombre_registro_agente) %>%
+  summarise(num_expos=n()) %>%
+  arrange(desc(num_expos)) %>%
+  .$nombre_registro_agente %>% as.vector()->curadores_sel
+
+
+artistas_sel<-c(artistas_sel1,artistas_sel2) %>% unique()
+
+
+curador_artistasel<-artistas_sel[artistas_sel %in% curadores_sel]
+artistas_selu<-artistas_sel[!(artistas_sel %in% curador_artistasel)]
+curadores_sel<-curadores_sel[!(curadores_sel %in% curador_artistasel)]
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(obra_en_coleccion_MTL>0) %>%
+  dplyr::filter(nombre_registro_agente %in% artistas_sel)%>%
+  group_by(nombre_registro_agente) %>%
+  summarise(num_expos=n()) %>%
+  arrange(desc(num_expos)) %>%
+  .$nombre_registro_agente %>% as.vector()->artistas_obrasMLT
 
 
 
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="artista", 
+                  (id_expo %in% expos_curadas[expos_curadas$curada=="curada",]$id_expo)) %>% 
+  dplyr::filter(nombre_registro_agente %in% artistas_selu) %>%
+  mutate(nombre_s=stringi::stri_paste(nombre_expo," - ",ano),tipo_s="expo",
+         nombre_t=nombre_registro_agente, tipo_t="artista") %>%
+  select(nombre_s,tipo_s,nombre_t,tipo_t,ano)->enlacesMLTsel1
+
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="artista", 
+                (id_expo %in% expos_curadas[expos_curadas$curada=="curada",]$id_expo)) %>% 
+  dplyr::filter(nombre_registro_agente %in% curador_artistasel) %>%
+  mutate(nombre_s=stringi::stri_paste(nombre_expo," - ",ano),tipo_s="expo",
+         nombre_t=nombre_registro_agente, tipo_t="artista-curador") %>%
+  select(nombre_s,tipo_s,nombre_t,tipo_t,ano)->enlacesMLTsel2
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="curador", 
+                (id_expo %in% expos_curadas[expos_curadas$curada=="curada",]$id_expo)) %>% 
+  dplyr::filter(nombre_registro_agente %in% curador_artistasel) %>%
+  mutate(nombre_s=stringi::stri_paste(nombre_expo," - ",ano),tipo_s="expo",
+         nombre_t=nombre_registro_agente, tipo_t="artista-curador") %>%
+  select(nombre_s,tipo_s,nombre_t,tipo_t,ano)->enlacesMLTsel3
+
+MLTExpos1956_2016 %>% 
+  dplyr::filter(rol_expo=="curador", 
+                (id_expo %in% expos_curadas[expos_curadas$curada=="curada",]$id_expo)) %>% 
+  dplyr::filter(nombre_registro_agente %in% curadores_sel) %>%
+  mutate(nombre_s=stringi::stri_paste(nombre_expo," - ",ano),tipo_s="expo",
+         nombre_t=nombre_registro_agente, tipo_t="curador") %>%
+  select(nombre_s,tipo_s,nombre_t,tipo_t,ano)->enlacesMLTsel4
+
+
+MLT_obras %>% filter(nombre_artista_registro_std %in% artistas_obrasMLT) %>%
+  transmute(nombre_s=nombre_artista_registro_std, 
+            tipo_s=if_else(nombre_artista_registro_std %in% curador_artistasel,"artista-curador","artista"),
+            nombre_t=stringi::stri_paste(titulo_obra," - ",cod_registro),
+            tipo_t="obra", ano=ano_creacion)->enlacesMLTsel5
+
+enlacesMLTsel<-bind_rows(enlacesMLTsel1,
+                         enlacesMLTsel2,
+                         enlacesMLTsel3,
+                         # enlacesMLTsel5
+                         enlacesMLTsel4) %>% distinct()
+
+write_csv(enlacesMLTsel,"enlacesMTLsel.csv")

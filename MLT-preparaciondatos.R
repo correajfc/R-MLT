@@ -1,5 +1,6 @@
 
 #Script para preparara los datos 
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 
 #librerias
 library(readr)
@@ -43,24 +44,6 @@ MLT_documentos <- dbMTL60 %>%
 MLT_obras <- dbMTL60 %>%
   gs_read(ws ="obras",range = cell_cols("A:AB"))
 
-#lectura de archivos
-#matriz inicial de los datos de exposiciones y agentes
-# MLT_Exposiciones_agentes <- read_csv("data/Continua-MLT_DB_07_2016 - Exposiciones-agentes.csv",
-# col_types = cols(duracion_dias = col_integer(),
-# fecha_fin = col_date(format = "%Y-%m-%d"),
-# fecha_ini = col_date(format = "%Y-%m-%d")))
-
-# MLT_personas <- read_csv("data/Continua-MLT_DB_07_2016 - personas.csv")
-# MLT_organizaciones <- read_csv("data/Continua-MLT_DB_07_2016 - organizaciones.csv")
-# MLT_presentadores <- read_csv("data/Continua-MLT_DB_07_2016 - presentadores.csv")
-# MLT_curadores <- read_csv("data/Continua-MLT_DB_07_2016 - curadores.csv",
-# col_types = cols(id_organizacion = col_integer(),
-# id_persona = col_integer()))
-# MLT_auspiciadores <- read_csv("data/Continua-MLT_DB_07_2016 - auspiciadores.csv",
-# col_types = cols(id_organizacion = col_integer(),
-# id_persona = col_integer()))
-# MLT_documentos <- read_csv("data/Continua-MLT_DB_07_2016 - documentos.csv")
-# MLT_obras <- read_csv("data/Continua-MLT_DB_07_2016 - obras.csv")
 
 
 #examinar datos y convertir tipos de datos
@@ -203,7 +186,7 @@ expo_agentes_expandido<-bind_rows(expo_agentes_personas,expo_agentes_organizacio
     # %>%
     #   transform(artistas_c=trimws(artistas_c))
 
-# Itera por cada cada una de las listas de artsitas    
+# Itera por cada cada una de las listas de artistas    
   x<-expo_artista_artista$artistas_c
   idex<-expo_artista_artista$id_expo
   relation_df<- data.frame(id_expo = integer(0),a1=character(0),a2=character(0))

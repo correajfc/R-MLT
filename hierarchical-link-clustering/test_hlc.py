@@ -5,19 +5,21 @@ import operator
 import heapq
 import numpy
 
-def plotStats(x,y,title,xtitle,ytitle):
+
+def plotStats(x, y, title, xtitle, ytitle):
 
     plt.xlabel(xtitle)
     plt.ylabel(ytitle)
     plt.title(title)
     plt.grid(True)
 
-    plt.plot(x,y)
+    plt.plot(x, y)
     plt.show()
 
-g = Graph.Read_Ncol("grafoMLTsimplificado.txt" , weights = True, directed=False)
 
-g_d = Graph.Read_Ncol("grafoMLTsimplificado.txt" , weights = True, directed=True)
+g = Graph.Read_Ncol("grafoMLTsimplificado.txt", weights=True, directed=False)
+
+g_d = Graph.Read_Ncol("grafoMLTsimplificado.txt", weights=True, directed=True)
 
 c = g.clusters("strong")
 
@@ -26,9 +28,9 @@ sccIdx = c.sizes().index(max(c.sizes()))
 for i in c:
     print(i)
 
-print ("c=",c)
+print ("c=", c)
 print ("len c=", len(c))
-print "sccIdx=", sccIdx
+print ("sccIdx=", sccIdx)
 
 scc = c.subgraph(sccIdx)
 
@@ -52,12 +54,11 @@ p_community = []
 
 for i in x:
 
-    print "x=", i
+    print ("x=", i)
     results = alg.run(i)
 
     v_community = []
     l_community = []
-
 
     l = []
 
@@ -87,29 +88,29 @@ for i in x:
 
         v_community = list(set(v_community) | set(community))
 
-
-    #find the N largest communities
+    # find the N largest communities
     for i in zip(*heapq.nlargest(1, enumerate(l), key=operator.itemgetter(1)))[0]:
-        print "index= ", i
-        print "len=", l[i]
-        print l_community[i]
+        print ("index= ", i)
+        print ("len=", l[i])
+        print (l_community[i])
         p_community.append(l_community[i])
 
     # y: length of largest community for a given threshold
     m = max(l_community, key=len) if l_community else [0]
+    # print(m)
     y.append(len(m))
 
-    print "Size of largest community =", len(m)
+    print ("Size of largest community =", len(m))
 
     # z: Number of communities for a given threshold
     l = len(l_community)
     z.append(l)
-    print "Number of communities =", l
+    print ("Number of communities =", l)
 
     # w: Total number of vertexes all communities for a given threshold
     lc = len(v_community)
     w.append(lc)
-    print "Community coverage =", lc
+    print ("Community coverage =", lc)
 
     # Calculates lowest and highest density of comm
 
@@ -121,25 +122,25 @@ for i in x:
     d.append(max_density)
     d2.append(min_density)
 
-    print "Max Density within all graph communities =", max_density
+    print ("Max Density within all graph communities =", max_density)
 
 
-plotStats(x,y,'Largest Commnunity per Threshold','Threshold','Largest Comm')
+plotStats(x, y, 'Largest Commnunity per Threshold', 'Threshold', 'Largest Comm')
 
-plotStats(x,z,'Num of Commnunities per Threshold','Threshold','Communities')
+plotStats(x, z, 'Num of Commnunities per Threshold', 'Threshold', 'Communities')
 
-plotStats(x,w,'Community Coverage per Threshold','Threshold','Community Coverage')
+plotStats(x, w, 'Community Coverage per Threshold', 'Threshold', 'Community Coverage')
 
-plotStats(x,d,'Communities max density per Threshold','Threshold','Communities Density')
+plotStats(x, d, 'Communities max density per Threshold', 'Threshold', 'Communities Density')
 
-plotStats(x,d2,'Communities min density per Threshold','Threshold','Communities Density')
+plotStats(x, d2, 'Communities min density per Threshold', 'Threshold', 'Communities Density')
 
-#plotStats(x,p,'Pagerank average per Threshold','Threshold','Pagerank Average')
+# plotStats(x,p,'Pagerank average per Threshold','Threshold','Pagerank Average')
 
 print("Threshold = %.6f" % alg.last_threshold)
 # print("Partition Density = %s" % alg.last_partition_density)
 
-print "len com= ", len(p_community)
+print ("len com= ", len(p_community))
 
 bins_h = numpy.linspace(0, 0.1, 100)
 
@@ -155,4 +156,3 @@ plt.savefig("pagerank.png")
 
 # print "Generating GraphML file..."
 # communities.save("UsersPostsSCC.gml",format="gml")
-

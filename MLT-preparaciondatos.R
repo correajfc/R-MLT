@@ -14,6 +14,7 @@ library(stringr)
 library(googledrive)
 library(googlesheets)
 
+gs_auth(new_user = TRUE)
 mishojas<-gs_ls()
 drive_ls("MLT_DB_07_2016")
 
@@ -46,7 +47,7 @@ MLT_obras <- dbMTL60 %>%
 
 
 
-#examinar datos y convertir tipos de datos
+#examinar datos y convertir tipos de datos -----
 #buscar duliplicados
 MLT_personas %>%
   mutate(nombre_registro_creador=trimws(nombre_registro_creador)) %>%
@@ -177,8 +178,13 @@ expo_agentes_expandido<-bind_rows(expo_agentes_personas,expo_agentes_organizacio
   MLTExpos1956_2016<-full_join(MLT_expos,expo_agentes_expandido,by="id_expo")
   write_csv(MLTExpos1956_2016,"MLTexpos1956-2016.csv")
   
-###############################################  
-#generacion de relaciones artistas artistas
+
+  
+  
+
+  
+  ###############################################  
+#generacion de relaciones artistas artistas -----
 
     expo_artista_artista<-select(MLT_Exposiciones_agentes,id_expo,artistas) %>% 
     mutate(artistas_c=artistas)%>%
@@ -214,49 +220,49 @@ expo_artista_artista<-relation_df %>%
   mutate(rol_a1="artistas",rol_a2="artista")
 
 
-#generacion de relaciones curador artistas
-
-    expo_curador_artista<-select(MLT_Exposiciones_agentes,id_expo,curadores,artistas) %>% 
-    mutate(curadores_c=curadores, artistas_c=artistas)%>%
-    transform(curadores_c = strsplit(as.character(curadores_c),",")) %>%
-      transform(artistas_c = strsplit(as.character(artistas_c),",")) 
-    #   transform(artistas_c=trimws(artistas_c))
-
-# Itera por cada cada una de las listas de artsitas    
-  x<-expo_curador_artista$curadores_c
-  y<-expo_curador_artista$artistas_c
-  idex<-expo_curador_artista$id_expo
-  relation_df2<- data.frame(id_expo = integer(0),a1=character(0),a2=character(0))
-  for(i in 1:length(idex)){
-    #i<-196
-    if(length(x[[i]])==1 & length(y[[i]])==1 && !is.na(x[[i]]) && !is.na(y[[i]]) && trimws(y[[i]])!="Varios")
-    {
-      tmp_df<-data.frame(id_expo=idex[[i]],a1=x[[i]],a2=y[[i]])
-      bind_rows(relation_df2,tmp_df)
-    }
-    if(length(x[[i]])==1 & length(y[[i]])>1 && !is.na(x[[i]]) )
-      {
-      
-      ids<-rep(i, times = length(y[[i]]))
-      a1<-rep(trimws(x[[i]]), times =length(y[[i]]))
-      a2<-trimws(y[[i]])
-      tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
-      relation_df2<-bind_rows(relation_df2,tmp_df)
-    }
-    
-    if(length(x[[i]])>1 & length(y[[i]])>1 && !is.na(x[[i]]) )
-      {
-      
-      for(j in 1:length(x[[i]])){
-      ids<-rep(i, times = length(y[[i]]))  
-      a1<-rep(trimws(x[[i]][j]), times =length(y[[i]]))
-      a2<-trimws(y[[i]])
-      tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
-      relation_df2<-bind_rows(relation_df2,tmp_df)
-      }
-    }
-  }
-    
+# #generacion de relaciones curador artistas
+# 
+#     expo_curador_artista<-select(MLT_Exposiciones_agentes,id_expo,curadores,artistas) %>% 
+#     mutate(curadores_c=curadores, artistas_c=artistas)%>%
+#     transform(curadores_c = strsplit(as.character(curadores_c),",")) %>%
+#       transform(artistas_c = strsplit(as.character(artistas_c),",")) 
+#     #   transform(artistas_c=trimws(artistas_c))
+# 
+# # Itera por cada cada una de las listas de artsitas    
+#   x<-expo_curador_artista$curadores_c
+#   y<-expo_curador_artista$artistas_c
+#   idex<-expo_curador_artista$id_expo
+#   relation_df2<- data.frame(id_expo = integer(0),a1=character(0),a2=character(0))
+#   for(i in 1:length(idex)){
+#     #i<-196
+#     if(length(x[[i]])==1 & length(y[[i]])==1 && !is.na(x[[i]]) && !is.na(y[[i]]) && trimws(y[[i]])!="Varios")
+#     {
+#       tmp_df<-data.frame(id_expo=idex[[i]],a1=x[[i]],a2=y[[i]])
+#       bind_rows(relation_df2,tmp_df)
+#     }
+#     if(length(x[[i]])==1 & length(y[[i]])>1 && !is.na(x[[i]]) )
+#       {
+#       
+#       ids<-rep(i, times = length(y[[i]]))
+#       a1<-rep(trimws(x[[i]]), times =length(y[[i]]))
+#       a2<-trimws(y[[i]])
+#       tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
+#       relation_df2<-bind_rows(relation_df2,tmp_df)
+#     }
+#     
+#     if(length(x[[i]])>1 & length(y[[i]])>1 && !is.na(x[[i]]) )
+#       {
+#       
+#       for(j in 1:length(x[[i]])){
+#       ids<-rep(i, times = length(y[[i]]))  
+#       a1<-rep(trimws(x[[i]][j]), times =length(y[[i]]))
+#       a2<-trimws(y[[i]])
+#       tmp_df<-data.frame(id_expo=ids,a1=a1,a2=a2)
+#       relation_df2<-bind_rows(relation_df2,tmp_df)
+#       }
+#     }
+#   }
+#     
 #buscar duliplicados
 relation_df2%>%
   group_by(id_expo,a1,a2) %>% 

@@ -19,6 +19,50 @@ dbMTL60<-gs_key("1kjWlQAyLL9LRVpuVJsHtbvEhazSYxJvXlKDfS5k5JtQ")
 MLT_Exposiciones_agentes<-dbMTL60 %>%
   gs_read(ws ="Exposiciones-agentes",range = cell_cols("A:AH"))
 
+
+#funcion para evaluar el tipo de exposicion colectiva e individual
+participacion_expo<-function(art){
+  if(is.na(art) )
+    return(NA)
+  sp<-strsplit(as.character(art), ",")
+  
+  if(lengths(sp)==1 & trimws(sp[1])!="Varios")
+    return("individual")
+  
+  if(lengths(sp)==1 & trimws(sp[1])=="Varios")
+    return("colectiva")
+  
+  if(lengths(sp) >1 )
+    return("colectiva")
+  
+}
+
+contar_artsitas<-function(art){
+  if(is.na(art) )
+    return(NA)
+  sp<-strsplit(as.character(art), ",")
+  
+  if(lengths(sp)==1 & trimws(sp[1])=="Varios")
+    return(NA)
+  
+  return(lengths(sp))
+  
+}
+
+
+MLT_expos<- MLT_Exposiciones_agentes %>% rowwise() %>%
+  mutate(tipo_participacion = participacion_expo(artistas) ) %>% 
+  select(id_expo,expo_order,nombre_expo,fecha_ini,fecha_fin,duracion_dias,
+         nombre_espacio,descripcion_expo, tipo_participacion)
+
+#añadir campo identificacion de order-expo-año y campo del año
+MLT_expos<-MLT_expos %>% 
+  mutate(nombre_expo_order_ano= paste(expo_order,
+                                      nombre_expo,
+                                      year(fecha_ini),
+                                      sep = "-"),
+         ano=year(fecha_ini)) 
+
 # construir grafo curador artistas ----
 
 MLT_Exposiciones_agentes %>%

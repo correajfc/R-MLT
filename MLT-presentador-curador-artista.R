@@ -208,6 +208,7 @@ p <- ggraph(grafoPCA.1956_1965, layout = "fr",niter = 1500) +
 p+theme_graph()
 
  ggsave("g-mlt-pca-1956-1965.svg",device = "svg", units = "cm", width = 40 )
+ ggsave("g-mlt-pca-1956-1965.png",device = "png", units = "cm", dpi = 300, width = 20  )
 
 
 label_nodes <-if_else(degree(grafoPCA.1966_1982)>5,V(grafoPCA.1966_1982)$name,"")
@@ -233,7 +234,8 @@ p <- ggraph(grafoPCA.1966_1982,layout = "fr") +
 p+theme_graph()
 
  ggsave("g-mlt-pca-1966-1982.svg",device = "svg", units = "cm", width = 40 )
-
+ ggsave("g-mlt-pca-1966-1982.png",device = "png", units = "cm", width = 20,dpi = 300 )
+ 
 
 label_nodes <-if_else(degree(grafoPCA.1983_1992)>5,V(grafoPCA.1983_1992)$name,"")
 # g<-layout_with_fr(grafoPCA.1983_1992, niter = 1500)
@@ -265,6 +267,7 @@ p <- ggraph( grafoPCA.1983_1992,
 p+theme_graph()
 
 ggsave("g-mlt-pca-1983-1992.svg",device = "svg", units = "cm", width = 40 )
+ggsave("g-mlt-pca-1983-1992.png",device = "png", units = "cm", width = 20, dpi = 300 )
 
 
 label_nodes <-if_else(degree(grafoPCA.1993_2006)>15,V(grafoPCA.1993_2006)$name,"")
@@ -297,6 +300,7 @@ p <- ggraph( grafoPCA.1993_2006,
 p+theme_graph()
 
 ggsave("g-mlt-pca-1993-2006.svg",device = "svg", units = "cm", width = 40 )
+ggsave("g-mlt-pca-1993-2006.png",device = "png", units = "cm", width = 20, dpi = 300 )
 
 
 label_nodes <-if_else(degree(grafoPCA.2007_2016)>15,V(grafoPCA.2007_2016)$name,"")
@@ -331,5 +335,14 @@ arrow = arrow(length = unit(2, 'mm')),
 p+theme_graph()
 
  ggsave("g-mlt-pca-2007-2016.svg",device = "svg", units = "cm", width = 40 )
+ ggsave("g-mlt-pca-2007-2016.png",device = "png", units = "cm", width = 20, dpi = 300 )
+ 
 
-
+ # contar la cantidad de curadores que ha tenido un artista -----
+ 
+ enlaces_pres_cur_art_1983_1992 %>% 
+   group_by(target) %>%
+   summarise(curs=paste0(source,collapse= ","), num_curs=n()) %>%
+   ungroup() %>%
+   filter(num_curs > 1) %>%
+   nrow()

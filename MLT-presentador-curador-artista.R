@@ -11,6 +11,7 @@ library(googlesheets)
 library(igraph)
 library(ggraph)
 library(dplyr)
+library(purrr)
 library(wesanderson)
 
 
@@ -26,10 +27,10 @@ participacion_expo<-function(art){
     return(NA)
   sp<-strsplit(as.character(art), ",")
   
-  if(lengths(sp)==1 & trimws(sp[1])!="Varios")
+  if(lengths(sp)==1 & !str_detect(sp,regex("varios", ignore_case = T)))
     return("individual")
   
-  if(lengths(sp)==1 & trimws(sp[1])=="Varios")
+  if(lengths(sp)==1 & str_detect(sp,regex("varios", ignore_case = T)))
     return("colectiva")
   
   if(lengths(sp) >1 )
@@ -61,7 +62,7 @@ MLT_expos<-MLT_expos %>%
                                       nombre_expo,
                                       year(fecha_ini),
                                       sep = "-"),
-         ano=year(fecha_ini)) 
+         ano=year(fecha_ini),ano_decimal = decimal_date(fecha_ini)) 
 
 # construir grafo curador artistas ----
 
@@ -100,7 +101,7 @@ nodos_artistas %>%
 
 enlaces_pres_cur_art<-tmp_enlaces %>% 
   select(source=curador_presentador,target=artistas,id_expo) %>%
-  left_join(select(MLT_expos,id_expo,nombre_expo_order_ano,ano,fecha_ini), by ="id_expo")
+  left_join(select(MLT_expos,id_expo,nombre_expo_order_ano,ano,fecha_ini,ano_decimal), by ="id_expo")
 
 
 # escribir en archivo de enlaces y nodos -------

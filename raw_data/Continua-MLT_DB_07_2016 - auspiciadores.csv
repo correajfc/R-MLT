@@ -1,0 +1,413 @@
+nombre_auspiciador,id_auspiciador,tipo,id_persona,id_organizacion
+Hacia el Litoral,238,colectivo,3244,#N/A
+13ª Feria del Libro del Pacífico,1,evento,#N/A,20
+14 Salones regionales,2,evento,#N/A,21
+15 Salones Regionales de Artistas –Zona Pacífico–,3,evento,#N/A,22
+7 Festival de Performance de Cali,4,evento,#N/A,23
+Art's events,24,evento,#N/A,24
+Becas Bloc,47,evento,#N/A,25
+Bloc 2014,54,evento,#N/A,26
+Expo-marca Latinoamericana,171,evento,#N/A,27
+Festival Internacional de Arte,180,evento,#N/A,28
+Festival Internacional de Arte de Cali,181,evento,#N/A,29
+Festival Nacional de Arte,182,evento,#N/A,30
+Juegos del Pacífico,275,evento,#N/A,31
+la trayectoria de una imágen,283,evento,#N/A,32
+Videosónica,407,evento,#N/A,407
+VII Congreso colombiano de farmacología y terapeutica,408,evento,#N/A,408
+Emilio Antonio Nejem,158,persona,2544,#N/A
+ACODRES,5,organizacion,#N/A,33
+Aerolíneas Tampa,6,organizacion,#N/A,34
+AFEX,7,organizacion,#N/A,35
+Agencia de Comunicación Internacional de los Estados Unidos,8,organizacion,#N/A,36
+Agencia Española de Cooperación Internacional,9,organizacion,#N/A,37
+Air France,10,organizacion,#N/A,38
+Alcaldía de Cali,11,organizacion,#N/A,39
+Alcaldía Mayor de Bogotá,12,organizacion,#N/A,40
+Alianza Colombo-Francesa,13,organizacion,#N/A,41
+Alianza Colombo-Francesa de Bogotá,14,organizacion,#N/A,42
+Alianza Colombo-Francesa de Cali,15,organizacion,#N/A,43
+Alianza Fiduciaria,16,organizacion,#N/A,44
+Alianza Francesa,17,organizacion,#N/A,45
+Allers S.A.,18,organizacion,#N/A,46
+Almanaque Azul,19,organizacion,#N/A,47
+Aluminio Munal,20,organizacion,#N/A,48
+Amigos de las Américas,21,organizacion,#N/A,49
+ANDI,23,organizacion,#N/A,50
+Artemo Franco Mejía y Cia,25,organizacion,#N/A,51
+Ashe y Cia.,26,organizacion,#N/A,52
+Asocaña,27,organizacion,#N/A,53
+Asociación colombiana de farmacología,28,organizacion,#N/A,54
+Asociación de Amigos del Museo Nacional de Colombia,29,organizacion,#N/A,55
+Asociación Francesa de Acción Artística,30,organizacion,#N/A,1
+Atila de Colombia,31,organizacion,#N/A,57
+Atlas,32,organizacion,#N/A,58
+ATMA,33,organizacion,#N/A,59
+Avianca,34,organizacion,#N/A,60
+Aviatur,35,organizacion,#N/A,61
+Bahareave,36,organizacion,#N/A,62
+Banco Cafetero,37,organizacion,#N/A,63
+Banco Comercial Antioqueño,38,organizacion,#N/A,64
+Banco de Archivos Digitales de Arte,39,organizacion,#N/A,65
+Banco de Colombia,40,organizacion,#N/A,66
+Banco de la República,41,organizacion,#N/A,67
+Banco de Occidente,42,organizacion,#N/A,68
+Bancolombia,43,organizacion,#N/A,69
+Baterías Mac,44,organizacion,#N/A,70
+Bavaria,45,organizacion,#N/A,71
+BBVA,46,organizacion,#N/A,72
+Belart,48,organizacion,#N/A,73
+Bellsouth,49,organizacion,#N/A,74
+Beneficencia del Valle,50,organizacion,#N/A,75
+Biblioteca Departamental David Martínez de Monteria,51,organizacion,#N/A,76
+Biblioteca Departamental Jorge Garces Borrero,52,organizacion,#N/A,77
+Biblioteca Luis Ángel Arango,53,organizacion,#N/A,78
+Braniff International,55,organizacion,#N/A,79
+Cali Cultural,57,organizacion,#N/A,80
+caliescali.com,58,organizacion,#N/A,81
+CaliKart,59,organizacion,#N/A,82
+Cámara de Comercio de Cali,60,organizacion,#N/A,83
+Camina al Río,61,organizacion,#N/A,84
+Canada Dry,62,organizacion,#N/A,85
+Canal U,63,organizacion,#N/A,86
+Carambolo,64,organizacion,#N/A,87
+Cartón de Colombia S.A.,67,organizacion,#N/A,88
+Carvajal,68,organizacion,#N/A,89
+Casa Color,69,organizacion,#N/A,90
+Casa Negret,70,organizacion,#N/A,91
+Casa-museo Ricardo Gómez Campuzano,71,organizacion,#N/A,92
+Ceat General,72,organizacion,#N/A,93
+Celanese de Colombia,73,organizacion,#N/A,94
+Celsia,74,organizacion,#N/A,95
+Central Castilla,75,organizacion,#N/A,96
+Central de Anchicayá,76,organizacion,#N/A,97
+Centro Ático,77,organizacion,#N/A,98
+Centro Colombo-americano de Baranquilla,78,organizacion,#N/A,99
+Centro Colombo-americano de Bogotá,79,organizacion,#N/A,100
+Centro Colombo-americano de Cali,80,organizacion,#N/A,101
+Centro Colombo-americano de Manizalez,81,organizacion,#N/A,102
+Centro Colombo-americano de Medellín,82,organizacion,#N/A,103
+Centro Cultural Colombo-americano,83,organizacion,#N/A,104
+Centro Cultural Comfandi,84,organizacion,#N/A,105
+Centro de Arte Actual,85,organizacion,#N/A,106
+Centro de Arte y Comunicación de Buenos Aires,86,organizacion,#N/A,107
+Centro de Relaciones Interamericanas,87,organizacion,#N/A,108
+Centro para la Ciencia la Cultura y la Educación-CECCE,88,organizacion,#N/A,109
+CERLAC,89,organizacion,#N/A,110
+Chiclets Ice,90,organizacion,#N/A,111
+CICOLAC,91,organizacion,#N/A,112
+Cochones Éxtasis,92,organizacion,#N/A,113
+CODEMACO,93,organizacion,#N/A,114
+Coéxito,94,organizacion,#N/A,115
+Colcultura,95,organizacion,#N/A,116
+Colgate Palmolive,97,organizacion,#N/A,117
+Colinversiones,98,organizacion,#N/A,118
+Colombia país diverso,99,organizacion,#N/A,119
+Colombiana de Esmaltes,100,organizacion,#N/A,120
+Colteger,101,organizacion,#N/A,121
+Comfandi,102,organizacion,#N/A,122
+Comfenalco,103,organizacion,#N/A,123
+Compañía Colombiana de Tabaco,104,organizacion,#N/A,124
+Compañía Nacional de Empaques Bates S.A.,105,organizacion,#N/A,125
+Compañías Tecnoquímicas,106,organizacion,#N/A,126
+Computadores espacio y tiempo Arquitectura,107,organizacion,#N/A,127
+Comunidad Judía de Cali,108,organizacion,#N/A,128
+Concejo Alemán de Bellas Artes,109,organizacion,#N/A,129
+Concejo Nacional de la Cultura de la República de Cuba,110,organizacion,#N/A,130
+Consejo Británico,111,organizacion,#N/A,131
+Consejo Nacional para la Cultura y las Artes de México,112,organizacion,#N/A,132
+Consulado en Cali,113,organizacion,#N/A,133
+Convenio Andrés Bello,114,organizacion,#N/A,134
+Coomeva,115,organizacion,#N/A,135
+Coomoepal,116,organizacion,#N/A,136
+Corporación Financiera del Valle,117,organizacion,#N/A,137
+Corporación para la Cultura de Cali,118,organizacion,#N/A,138
+Corporación Pro-gráfica de Cali,119,organizacion,#N/A,139
+Corpovalle,120,organizacion,#N/A,140
+Cosejo Internacional del Museo de Arte Moderno de New York,121,organizacion,#N/A,141
+Cuéllar Serrano Gómez,122,organizacion,#N/A,142
+CVC,123,organizacion,#N/A,143
+Decapack,125,organizacion,#N/A,144
+Deloitte,126,organizacion,#N/A,145
+Departamento de Arte Facultad de Artes y Humanidades de la Universidad de los Andes,127,organizacion,#N/A,146
+Departamento del Valle,128,organizacion,#N/A,147
+Departamento del Valle del Cauca,129,organizacion,#N/A,148
+Deprisa,130,organizacion,#N/A,149
+Desde el bienestar,131,organizacion,#N/A,150
+Despacho de la Primera Dama del Valle del Cauca,132,organizacion,#N/A,151
+Dirección de Arquitectura del Ministerio de Cultura y Comunicaciones de Francia,133,organizacion,#N/A,152
+Dirección de Bellas Artes y Extensión Cultural del Valle,134,organizacion,#N/A,153
+Dirección de Cultura de Cali,135,organizacion,#N/A,154
+El Clavo,137,organizacion,#N/A,155
+El País,138,organizacion,#N/A,156
+El Péndulo,139,organizacion,#N/A,157
+Embajada Británica,140,organizacion,#N/A,158
+Embajada de Alemania,141,organizacion,#N/A,159
+Embajada de Argentina,142,organizacion,#N/A,160
+Embajada de Brasil,143,organizacion,#N/A,161
+Embajada de Canadá,144,organizacion,#N/A,162
+Embajada de China,145,organizacion,#N/A,163
+Embajada de Colombia en Argentina,146,organizacion,#N/A,164
+Embajada de España,147,organizacion,#N/A,165
+Embajada de Francia,148,organizacion,#N/A,166
+Embajada de la República Democrática Alemana,149,organizacion,#N/A,167
+Embajada de la República Federal Alemana,150,organizacion,#N/A,168
+Embajada de la República Popular de China,151,organizacion,#N/A,169
+Embajada de los Estados Unidos,152,organizacion,#N/A,170
+Embajada de México,153,organizacion,#N/A,171
+Embajada de Perú,154,organizacion,#N/A,172
+Embajada de Suiza,155,organizacion,#N/A,173
+Embajada de Venezuela,156,organizacion,#N/A,174
+Embajada de Yugoslavia,157,organizacion,#N/A,175
+Emisora Planeta,159,organizacion,#N/A,177
+Empresas Municipales de Cali,160,organizacion,#N/A,178
+Empresas norteamericanas,161,organizacion,#N/A,179
+En el marco del XV Festival Internacional de Arte de Cali,162,organizacion,#N/A,180
+Epsa,163,organizacion,#N/A,181
+Escuela de Arquitectura de la Universidad del Valle,164,organizacion,#N/A,182
+Espacio Temporal Internacional Circuit México-Inglaterra-Argentina-Colombia,165,organizacion,#N/A,183
+España Acción Cultural Exterior,166,organizacion,#N/A,184
+Estación Digital,167,organizacion,#N/A,185
+Estudios Takeshima,168,organizacion,#N/A,186
+Eternit Pacífico,169,organizacion,#N/A,187
+Everest Medical,170,organizacion,#N/A,188
+Fantasías Femeninas,172,organizacion,#N/A,189
+Faró,173,organizacion,#N/A,190
+Federación Nacional de Cafeteros,175,organizacion,#N/A,191
+Feriva,176,organizacion,#N/A,192
+Ferretería Electra,177,organizacion,#N/A,193
+Ferrocarriles Nacionales,178,organizacion,#N/A,194
+FES,179,organizacion,#N/A,195
+First National City Bank,183,organizacion,#N/A,196
+Focus- analésico,184,organizacion,#N/A,197
+Fondo Cubano de Bienes Culturales,185,organizacion,#N/A,198
+Fondo Mixto,186,organizacion,#N/A,199
+Fondo Mixto para la promoción de la Cultura y las Artes,187,organizacion,#N/A,200
+Fondo Mixto para la Promoción de la Cultura y las Artes del Valle del Cauca,188,organizacion,#N/A,201
+Fondo Mixto para la promoción de la Cultura y las Artesde San Andrés y Providencia,189,organizacion,#N/A,202
+Foto-Estudio,190,organizacion,#N/A,203
+Foto-Museo de Bogotá,191,organizacion,#N/A,204
+Fundación Arteria,192,organizacion,#N/A,205
+Fundación ATMA,193,organizacion,#N/A,206
+Fundación Bolivar Davivienda,194,organizacion,#N/A,207
+Fundación Casa-museo Maestro Pedro Nel Gómez,195,organizacion,#N/A,208
+Fundación de la fotografía y la imagen,196,organizacion,#N/A,209
+Fundación Epsa,197,organizacion,#N/A,210
+Fundación Éxito,198,organizacion,#N/A,211
+Fundación Función Visible,199,organizacion,#N/A,212
+Fundación Gilberto Alzate Avendaño,200,organizacion,#N/A,213
+Fundación Harold Eder,201,organizacion,#N/A,214
+Fundación MAPFRE,202,organizacion,#N/A,8
+Fundación Misol,203,organizacion,#N/A,216
+Fundación Orbis,204,organizacion,#N/A,217
+Fundación para la Educación superior,205,organizacion,#N/A,218
+Fundación Puntos de Encuentro,206,organizacion,#N/A,219
+Fundación Rogelio Salmona,207,organizacion,#N/A,9
+Fundación Santo Domingo,208,organizacion,#N/A,221
+Galería Arte Actual (Chile),209,organizacion,#N/A,222
+Galería Belarca,210,organizacion,#N/A,223
+Galería Carmen Waugh (Chile),211,organizacion,#N/A,224
+Galería de Arte Actual,212,organizacion,#N/A,225
+Galería Deimos de Bogotá,213,organizacion,#N/A,11
+Galería Diners de Bogotá,214,organizacion,#N/A,227
+Galería El Museo,215,organizacion,#N/A,228
+Galería El Museo de Bogotá,216,organizacion,#N/A,229
+Galería El Museo de Cali,217,organizacion,#N/A,230
+Galería Época (Chile),218,organizacion,#N/A,231
+Galería Fernando Quintana de Bogotá,219,organizacion,#N/A,232
+Galería Francia de Medellin,220,organizacion,#N/A,233
+Galería Francony de París,221,organizacion,#N/A,234
+Galería Garcés Velásquez,222,organizacion,#N/A,235
+Galería Luis Pérez de Bogotá,223,organizacion,#N/A,236
+Galería Siglo XX de Quito,224,organizacion,#N/A,237
+Galería Tovar de Bogotá,225,organizacion,#N/A,238
+Gaseosas Postobón,226,organizacion,#N/A,239
+Gases de Occidente,227,organizacion,#N/A,240
+General Métalica Ltda,228,organizacion,#N/A,241
+General Metálicas,229,organizacion,#N/A,242
+Gerencia Cultural del Valle del Cauca,230,organizacion,#N/A,243
+Gobernación del departamento del Cesar,231,organizacion,#N/A,244
+Gobernación del Valle del Cauca,232,organizacion,#N/A,245
+Gobierno Estadounidense,233,organizacion,#N/A,246
+Goodyear,234,organizacion,#N/A,247
+Graphics Ltda.,235,organizacion,#N/A,248
+Grupo Atlas,236,organizacion,#N/A,249
+Grupo North,237,organizacion,#N/A,250
+Harinera del Valle,239,organizacion,#N/A,251
+Honda,240,organizacion,#N/A,252
+Hotel Casa Republicana,241,organizacion,#N/A,253
+Hoteles Royal,242,organizacion,#N/A,254
+Ifa,243,organizacion,#N/A,255
+Igenio Providencia,244,organizacion,#N/A,256
+Industria de Licores del Valle,245,organizacion,#N/A,257
+Ingenio Ingenio Manuelita,246,organizacion,#N/A,258
+Ingenio Manuelita,247,organizacion,#N/A,259
+Ingenio Mayagüez,248,organizacion,#N/A,260
+Ingenio Pichichi,249,organizacion,#N/A,261
+Ingenio Río Paila,250,organizacion,#N/A,262
+Insituto Goethe de Bogota,251,organizacion,#N/A,263
+Institut für Auslandsbeziehungen,252,organizacion,#N/A,264
+Instituto Alemán de Relaciones Exteriores con el Exterior,253,organizacion,#N/A,265
+Instituto Colombiano de Cultura,254,organizacion,#N/A,266
+Instituto Colombiano de Seguros Sociales,255,organizacion,#N/A,267
+Instituto de Crédito Territorial,256,organizacion,#N/A,268
+Instituto de Cultura Puertorriqueño,257,organizacion,#N/A,269
+Instituto de Relaciones Culturales Colombo-Israelí,258,organizacion,#N/A,270
+Instituto de Relaciones Exteriores de Alemania,259,organizacion,#N/A,271
+Instituto Departamental de Bellas Artes,260,organizacion,#N/A,272
+Instituto Distrital de Cultura y Turismo de Bogotá D.C.,261,organizacion,#N/A,273
+Instituto Goethe,262,organizacion,#N/A,274
+Instituto Goethe de Bogotá,263,organizacion,#N/A,275
+Instituto Nacional de Bellas Artes de México,264,organizacion,#N/A,276
+Instituto Nacional de Cultura y Bellas Artes,265,organizacion,#N/A,277
+Instituto Popular de Cultura,266,organizacion,#N/A,278
+Instituto Tamarind de EE.UU.,267,organizacion,#N/A,13
+Internacional Association for Hospice and Palliative care,268,organizacion,#N/A,280
+Internacional de Ediciones,269,organizacion,#N/A,281
+Intituto Smithsonian de EE.UU,270,organizacion,#N/A,282
+Inversiones Urdinola,271,organizacion,#N/A,283
+Inversiones Xicalina,272,organizacion,#N/A,284
+Johnnie Walker,274,organizacion,#N/A,285
+KLM,276,organizacion,#N/A,286
+Kool,277,organizacion,#N/A,287
+La 14,278,organizacion,#N/A,288
+La Cabaña,279,organizacion,#N/A,289
+La Galería de la Oficina,280,organizacion,#N/A,290
+La Garantía,281,organizacion,#N/A,291
+La Sucursal.clo,282,organizacion,#N/A,292
+Laboratorio Profesional,284,organizacion,#N/A,293
+Laboratorios Carlo Erba,285,organizacion,#N/A,294
+Laboratorios JGB,286,organizacion,#N/A,295
+Laboratorios Lafrancol,287,organizacion,#N/A,296
+Laboratorios Recamier,288,organizacion,#N/A,297
+Ladeco,289,organizacion,#N/A,298
+Lago y Sáenz,290,organizacion,#N/A,299
+Las Delicias de Will's,291,organizacion,#N/A,300
+Lomitos al Carbón,292,organizacion,#N/A,301
+Lugar a Dudas,293,organizacion,#N/A,302
+M.F. Publicidad,294,organizacion,#N/A,303
+Mairie de Paris,295,organizacion,#N/A,304
+Marañón,296,organizacion,#N/A,305
+Más arte más acción,299,organizacion,#N/A,306
+Ministerio de Asuntos Exteriores de España,300,organizacion,#N/A,307
+Ministerio de Cultura,301,organizacion,#N/A,308
+Ministerio de Cultura; Dirección de cultura del municipio de Cali,302,organizacion,#N/A,309
+Ministerio de Relaciones Exteriores,303,organizacion,#N/A,310
+Ministerio de Relaciones Exteriores de Argentina,304,organizacion,#N/A,311
+Ministerio de Relaciones Exteriores del Brasil,305,organizacion,#N/A,312
+Misión Colombiana ante las Naciones Unidas,306,organizacion,#N/A,313
+Molinos Dagua,307,organizacion,#N/A,314
+Museo Arqueológico La Merced,309,organizacion,#N/A,315
+Museo Casa-estudio de Diego Rivera y Frida Khalo,310,organizacion,#N/A,316
+Museo concertado,311,organizacion,#N/A,317
+Museo de Antioquia,312,organizacion,#N/A,318
+Museo de Arte de Caldas,313,organizacion,#N/A,319
+Museo de arte de Pereira,314,organizacion,#N/A,320
+Museo de Arte de Pereira,315,organizacion,#N/A,320
+Museo de arte del Tólima,316,organizacion,#N/A,322
+Museo de Arte Erótico Americano,317,organizacion,#N/A,323
+Museo de Arte Erótico de Bogotá,318,organizacion,#N/A,324
+Museo de Arte Moderno de Bogota,319,organizacion,#N/A,325
+Museo de Arte Moderno de Cartagena,320,organizacion,#N/A,326
+Museo de Arte Moderno de Medellín,321,organizacion,#N/A,327
+Museo de Arte Moderno de Nueva York,322,organizacion,#N/A,328
+Museo de Arte Moderno de Pereira,323,organizacion,#N/A,329
+Museo de arte moderno de Pereira,324,organizacion,#N/A,329
+Museo de Arte Moderno La Tertulia,325,organizacion,#N/A,331
+Museo La Tertulia,326,organizacion,#N/A,332
+Museo Nacional de Colombia,327,organizacion,#N/A,18
+Museo Rayo,328,organizacion,#N/A,334
+Nikos,329,organizacion,#N/A,335
+Noralba de Morales,330,organizacion,#N/A,336
+Oficina de Turismo del Valle del Cauca,332,organizacion,#N/A,338
+OP Gráficas,333,organizacion,#N/A,339
+OP gráficas ltda.,334,organizacion,#N/A,340
+Pagnamenta,336,organizacion,#N/A,341
+Panamerican World Airways,337,organizacion,#N/A,342
+Panturismo,338,organizacion,#N/A,343
+Parque Industria Cultural,339,organizacion,#N/A,344
+Parquesoft,340,organizacion,#N/A,345
+Periódico El Pueblo,341,organizacion,#N/A,346
+Pintuco,342,organizacion,#N/A,347
+Pisa,343,organizacion,#N/A,348
+Plaza de Toros de Cali,344,organizacion,#N/A,349
+Poker,345,organizacion,#N/A,350
+Pontificia Universidad Javeriana,346,organizacion,#N/A,351
+Presidencia de la República de Colombia,347,organizacion,#N/A,352
+Pro-Helevetia de Suiza,348,organizacion,#N/A,353
+Proartes,349,organizacion,#N/A,354
+Proimágenes Colombia,350,organizacion,#N/A,355
+Propal,351,organizacion,#N/A,356
+Propal S.A.,352,organizacion,#N/A,19
+Propersa,353,organizacion,#N/A,358
+Pueblito Valluno,354,organizacion,#N/A,359
+Quaker,355,organizacion,#N/A,360
+Regional Valle de la Sociedad Colombiana de Arquitectos,356,organizacion,#N/A,361
+Ron Premium,358,organizacion,#N/A,363
+Sanamed Duo,361,organizacion,#N/A,366
+Santiago Eder,362,organizacion,#N/A,367
+Seccional Cali de la Sociedad Colombiana de Arquitectos,363,organizacion,#N/A,368
+Seccionales Bogotá y Cundinamarca de la Sociedad Colombiana de Arquitectos,364,organizacion,#N/A,369
+Secretaría de Cultura de Buenos Aires,365,organizacion,#N/A,370
+Secretaría de Cultura y Turismo de Cali,366,organizacion,#N/A,371
+Secretaría de Cultura y Turismo del Valle del Cauca,367,organizacion,#N/A,372
+Secretaría de Educación de Cali,368,organizacion,#N/A,373
+Secretaría de Educación del Valle del Cauca,369,organizacion,#N/A,374
+SENA,370,organizacion,#N/A,375
+Sidoc,371,organizacion,#N/A,376
+Silva Ltda,372,organizacion,#N/A,377
+Simón Parrilla,373,organizacion,#N/A,378
+Sociedad Colombiana de Arquitectos,374,organizacion,#N/A,379
+Sociedad Económica de Amigos El País,375,organizacion,#N/A,380
+Sociedad Portuaria Regional de Buenaventura,376,organizacion,#N/A,381
+Sura,380,organizacion,#N/A,382
+Suramericana,381,organizacion,#N/A,383
+Susana de Lima,382,organizacion,#N/A,384
+Teatro Jorge Isaacs,383,organizacion,#N/A,385
+Telepacífico,384,organizacion,#N/A,386
+Telesat,385,organizacion,#N/A,387
+Textiles El Cedro,386,organizacion,#N/A,388
+Tiempo de amor y erotismo 2011,388,organizacion,#N/A,389
+Titan Intercontinental,389,organizacion,#N/A,390
+Toot,390,organizacion,#N/A,391
+Tribeca Film Institute,391,organizacion,#N/A,392
+trilogía,392,organizacion,#N/A,393
+TV5MONDE,393,organizacion,#N/A,394
+Ultratex,394,organizacion,#N/A,395
+Unión Carbide,395,organizacion,#N/A,396
+Unión Cultural Israelita,396,organizacion,#N/A,397
+Universal fotográfica,397,organizacion,#N/A,398
+Universidad Autonoma,398,organizacion,#N/A,399
+Universidad Autónoma de Occidente,399,organizacion,#N/A,400
+Universidad de Antioquia,400,organizacion,#N/A,401
+Universidad de Puerto Rico,401,organizacion,#N/A,402
+Universidad del Valle,402,organizacion,#N/A,403
+Universidad Javeriana,403,organizacion,#N/A,404
+Universidad Javeriana Bogotá,404,organizacion,#N/A,405
+Urbanización Gran Limonar,405,organizacion,#N/A,406
+Vincorte,409,organizacion,#N/A,409
+Vivero Marinela,410,organizacion,#N/A,410
+Yemail Arquitectura,411,organizacion,#N/A,411
+Young & Rubicam,412,organizacion,#N/A,412
+Odetto Guersoni,331,persona,337,#N/A
+Edith Behring,136,persona,585,#N/A
+Valerio Rodrigues,406,persona,759,#N/A
+Thereza Miranda,387,persona,794,#N/A
+Solange Oliveira,379,persona,823,#N/A
+Rossini Perez,359,persona,865,#N/A
+Renina Katz,357,persona,931,#N/A
+María Bonomi,297,persona,1186,#N/A
+Fayga Ostrower,174,persona,1727,#N/A
+Ana Letycia Quadros,22,persona,2215,#N/A
+Mario Laserna,298,persona,2545,#N/A
+Ruly Vargas,360,persona,2546,#N/A
+Soffy Arboleda de Vega,377,persona,2547,#N/A
+Sofía de Urdinola,378,persona,2548,#N/A
+Darel Valença,124,persona,2676,#N/A
+Byron López,56,persona,3245,#N/A
+Carlos Martíns,65,persona,3246,#N/A
+Carmen Vargas,66,persona,3247,#N/A
+Coleccionistas privados,96,persona,3248,#N/A
+Jaime Upegui,273,persona,3249,#N/A
+Morgan Marinetti,308,persona,3250,#N/A
+Óscar Darío Morales,335,persona,3251,#N/A

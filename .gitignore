@@ -3,4 +3,6 @@
 *.RData
 *.Rhistory
 .Rproj.user
-.httr-oauth
+.httr-oauth*
+/biblio/
+

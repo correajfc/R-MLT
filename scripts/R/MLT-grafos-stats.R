@@ -1,31 +1,5 @@
 #cargar/instalar librerias 
-# 
-# install.packages('igraph')
-# install.packages('network') 
-# install.packages('sna')
-# install.packages('ndtv')
-# install.packages('visNetwork')
-# devtools::install_github("analyxcompany/ForceAtlas2")
-# 
 
-library(readr)
-library(dplyr)
-library(tidyr)
-library(tidyverse)
-library(ggplot2)
-library(igraph)
-library(network)
-library(sna)
-library(ndtv)
-library(visNetwork)
-library(ForceAtlas2)
-
-#mapas de color
-library(viridis)
-library(RColorBrewer)
-
-#cargar datos 
-#rm(list = ls()) # Remove all the objects we created so far.
 
 # DATASETS 
 head(MLTExpos1956_2016)

@@ -29,35 +29,6 @@ MLT_organizaciones<-MLT_organizaciones %>%
   mutate(nombre_institucion=trimws(nombre_institucion)) %>%
   distinct(nombre_institucion,.keep_all=TRUE)
 
-#funcion para evaluar el tipo de exposicion colectiva e individual
-participacion_expo<-function(art){
-  if(is.na(art) )
-    return(NA)
-  sp<-strsplit(as.character(art), ",")
-  
-  if(lengths(sp)==1 & trimws(sp[1])!="Varios")
-    return("individual")
-  
-  if(lengths(sp)==1 & trimws(sp[1])=="Varios")
-    return("colectiva")
-  
-  if(lengths(sp) >1 )
-    return("colectiva")
-  
-}
-
-contar_artsitas<-function(art){
-  if(is.na(art) )
-    return(NA)
-  sp<-strsplit(as.character(art), ",")
-  
-  if(lengths(sp)==1 & trimws(sp[1])=="Varios")
-    return(NA)
-  
-  return(lengths(sp))
-  
-}
-
 
 MLT_expos<- MLT_Exposiciones_agentes %>% rowwise() %>%
   mutate(tipo_participacion = participacion_expo(artistas) ) %>% 

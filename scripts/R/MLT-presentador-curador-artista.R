@@ -1,54 +1,9 @@
 
-# librerias ------
-library(tidyr)
-library(ggplot2)
-library(lubridate)
-# library(visdat)
-library(stringr)
-
-library(googledrive)
-library(googlesheets)
-library(igraph)
-library(ggraph)
-library(dplyr)
-library(purrr)
-library(wesanderson)
-
 
 
 dbMTL60<-gs_key("1kjWlQAyLL9LRVpuVJsHtbvEhazSYxJvXlKDfS5k5JtQ")
 MLT_Exposiciones_agentes<-dbMTL60 %>%
   gs_read(ws ="Exposiciones-agentes",range = cell_cols("A:AH"))
-
-
-#funcion para evaluar el tipo de exposicion colectiva e individual
-participacion_expo<-function(art){
-  if(is.na(art) )
-    return(NA)
-  sp<-strsplit(as.character(art), ",")
-  
-  if(lengths(sp)==1 & !str_detect(sp,regex("varios", ignore_case = T)))
-    return("individual")
-  
-  if(lengths(sp)==1 & str_detect(sp,regex("varios", ignore_case = T)))
-    return("colectiva")
-  
-  if(lengths(sp) >1 )
-    return("colectiva")
-  
-}
-
-contar_artsitas<-function(art){
-  if(is.na(art) )
-    return(NA)
-  sp<-strsplit(as.character(art), ",")
-  
-  if(lengths(sp)==1 & trimws(sp[1])=="Varios")
-    return(NA)
-  
-  return(lengths(sp))
-  
-}
 
 
 MLT_expos<- MLT_Exposiciones_agentes %>% rowwise() %>%
@@ -113,15 +68,6 @@ write.csv(file = "output_data/MLT_pres_cur_art_nodes.csv",nodos_pres_cur_art)
 # enlaces_pres_cur_art %>%
 #   group_by(source,target) %>%
 #   summarise(peso_enlace=n()) ->enlaces_pres_cur_art_all
-enlaces_pres_cur_art %>%
-  # filter(ano<=1965) %>%
-  group_by(source,target) %>%
-  summarise(peso_enlace=n()) %>% 
-  arrange(desc(peso_enlace)) %>% 
-  filter(str_detect(source,regex("[\\s\\S]*"))) %>% 
-  filter(str_detect(target,regex("[\\s\\S]*"))) %>% 
-  filter(str_detect(source,regex("alejandro",ignore_case = T)))
-
 
 enlaces_pres_cur_art %>%
   filter(ano<=1965) %>%
@@ -355,3 +301,14 @@ p+theme_graph()
    summarise(curs=paste0(source,collapse= ","), num_curs=n()) %>%
    ungroup() %>%
    filter(num_curs > 1) 
+ 
+ # filtral enlaces por coincidencia de nombre source target
+ enlaces_pres_cur_art %>%
+   group_by(source,target) %>%
+   summarise(peso_enlace=n()) %>% 
+   arrange(desc(peso_enlace)) %>% 
+   filter(str_detect(source,regex("[\\s\\S]*"))) %>% 
+   filter(str_detect(target,regex("[\\s\\S]*"))) %>% 
+   filter(str_detect(source,regex("alejandro",ignore_case = T)))
+ 
+ 
